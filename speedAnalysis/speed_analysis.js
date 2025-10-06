@@ -15,26 +15,37 @@ function startTest() {
 }
 
 function endTest() {
-  endTime = new Date().getTime();
+  if(validateInput()) {
+    endTime = new Date().getTime();
 
-  document.getElementById("userInput").readOnly = true;
+    document.getElementById("userInput").readOnly = true;
 
-  var timeElapsed = (endTime - startTime) / 1000;
-  var userTypedText = document.getElementById("userInput").value;
+    var timeElapsed = (endTime - startTime) / 1000;
+    var userTypedText = document.getElementById("userInput").value;
 
-  var typedWords = userTypedText.split(/\s+/).filter(function (word) {
-    return word !== "";
-  }).length
+    var typedWords = userTypedText.split(/\s+/).filter(function (word) {
+      return word !== "";
+    }).length
 
-  var wpm = 0;
+    var wpm = 0;
 
-  if (timeElapsed !== 0 && !isNaN(typedWords)) {
-    wpm = Math.round((typedWords / timeElapsed) * 60);
+    if (timeElapsed !== 0 && !isNaN(typedWords)) {
+      wpm = Math.round((typedWords / timeElapsed) * 60);
+    }
+
+    var outputDiv = document.getElementById("output");
+    outputDiv.innerHTML = "<h2>Typing Test Results:</h2>" +
+      "<p>Words Typed: " + typedWords + "</p>" + 
+      "<p>Time Elapsed: " + timeElapsed.toFixed(2) + " seconds</p>" +
+      "<p>Words Per Minute (WPM): " + wpm + "</p>";
   }
+}
 
-  var outputDiv = document.getElementById("output");
-  outputDiv.innerHTML = "<h2>Typing Test Results:</h2>" +
-    "<p>Words Typed: " + typedWords + "</p>" + 
-    "<p>Time Elapsed: " + timeElapsed.toFixed(2) + " seconds</p>" +
-    "<p>Words Per Minute (WPM): " + wpm + "</p>";
+function validateInput() {
+  const text = document.getElementById("inputText").value;
+  const input = document.getElementById("userInput").value;
+  if(text === input) {
+    return true;
+  }
+  return false;
 }
