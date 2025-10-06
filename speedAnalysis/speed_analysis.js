@@ -47,5 +47,13 @@ function validateInput() {
   if(text === input) {
     return true;
   }
+  alert("The text is not identical");
   return false;
 }
+
+document.getElementById("userInput").addEventListener("keydown", (event) => {
+  if(event.key === "Enter") {
+    event.preventDefault();
+    endTest();
+  }
+});
