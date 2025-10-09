@@ -6,8 +6,19 @@
   <body>
     <h1>Weather Report</h1>
     <form id="weatherForm">
+      <h2>Get Data from Name:</h2>
       <label for="city">Enter City:</label>
       <input type="text" id="city" name="city">
+      <button type="submit">Get Weather</button>
+    </form>
+
+    <form id="weatherForm1">
+      <h2>Get Data from Lat & Lon:</h2>
+      <label for="lat">Enter Latitude:</label>
+      <input type="number" step="0.01" id="lat" name="lat">
+      
+      <label for="lon">Enter Longitude:</label>
+      <input type="number" step="0.01" id="lon" name="lon">
       <button type="submit">Get Weather</button>
     </form>
 
